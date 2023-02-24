@@ -4,7 +4,7 @@ import math
 
 
 # ********
-# HELP Button Function
+# ! HELP Button Function Definition
 def helper():
 	m.showinfo(title="CMG Software Help", message=" ....Cabinet Material Generator.... \
                \n ****************\
@@ -18,7 +18,7 @@ def helper():
 
 
 # ********
-# Sell Price Calculation Button Function
+# ! Sell Price Calculation Button Function Definition
 sp_18mmBSB = 0
 sp_6mmBSB = 0
 sp_18mmOSR = 0
@@ -50,8 +50,9 @@ def sp_Calc():
 
 
 # ********
-# Output Calculation Button Function
+# ! Output Calculation Button Function Definition
 def Output_Calc():
+    # ? 18mm BSB Final Output
 	Quantity_output_18mmBSB = math.ceil((LP_sft_calc() + RP_sft_calc()) / 32)
 	lbl_Quantity_output_18mmBSB.configure(text=Quantity_output_18mmBSB)
 
@@ -61,6 +62,7 @@ def Output_Calc():
 	sp_output_18mmBSB = math.ceil(Quantity_output_18mmBSB * 32 * sp_18mmBSB)
 	lbl_sp_output_18mmBSB.configure(text=sp_output_18mmBSB)
 
+	# ? 6mm BSB Final Output
 	Quantity_output_6mmBSB = math.ceil(BACK_sft_calc() / 32)
 	lbl_Quantity_output_6mmBSB.configure(text=Quantity_output_6mmBSB)
 
@@ -70,6 +72,7 @@ def Output_Calc():
 	sp_output_6mmBSB = math.ceil(Quantity_output_6mmBSB * 32 * sp_6mmBSB)
 	lbl_sp_output_6mmBSB.configure(text=sp_output_6mmBSB)
 
+	# ? 18mm OSR Final Output
 	Quantity_output_18mmOSR = math.ceil((LP_sft_calc() + RP_sft_calc()) / 32)
 	lbl_Quantity_output_18mmOSR.configure(text=Quantity_output_18mmOSR)
 
@@ -79,6 +82,7 @@ def Output_Calc():
 	sp_output_18mmOSR = math.ceil(Quantity_output_18mmOSR * 32 * sp_18mmOSR)
 	lbl_sp_output_18mmOSR.configure(text=sp_output_18mmOSR)
 
+	# ? Factory Finished Shutter Final Output
 	Quantity_output_FFShutter = math.ceil((LP_sft_calc() + RP_sft_calc()) / 32)
 	lbl_Quantity_output_FFShutter.configure(text=Quantity_output_FFShutter)
 
@@ -88,6 +92,7 @@ def Output_Calc():
 	sp_output_FFShutter = math.ceil(Quantity_output_FFShutter * 32 * sp_FFShutter)
 	lbl_sp_output_FFShutter.configure(text=sp_output_FFShutter)
 
+	# ? Hand Finished Shutter Final Output
 	Quantity_output_HFShutter = math.ceil((LP_sft_calc() + RP_sft_calc()) / 32)
 	lbl_Quantity_output_HFShutter.configure(text=Quantity_output_HFShutter)
 
@@ -97,6 +102,7 @@ def Output_Calc():
 	sp_output_HFShutter = math.ceil(Quantity_output_HFShutter * 32 * sp_HFShutter)
 	lbl_sp_output_HFShutter.configure(text=sp_output_HFShutter)
 
+	# ? Labor Charge Final Output
 	Quantity_output_LaborCharge = 1
 	lbl_Quantity_output_LaborCharge.configure(text=Quantity_output_LaborCharge)
 
@@ -106,6 +112,7 @@ def Output_Calc():
 	sp_output_LaborCharge = math.ceil(Quantity_output_LaborCharge * 32 * sp_LaborCharge)
 	lbl_sp_output_LaborCharge.configure(text=sp_output_LaborCharge)
 
+	# ? Total
 	sp_output_Total = (
 				sp_output_18mmBSB + sp_output_6mmBSB + sp_output_18mmOSR + sp_output_FFShutter + sp_output_HFShutter)
 	lbl_sp_output_Total.configure(text=sp_output_Total)
@@ -118,25 +125,27 @@ def Output_Calc():
 				Quantity_output_18mmBSB + Quantity_output_6mmBSB + Quantity_output_18mmOSR + Quantity_output_FFShutter + Quantity_output_HFShutter)
 	lbl_Quantity_output_Total.configure(text=Quantity_output_Total)
 
+	# ? Cabinet Front SqFt
 	cab_sft_calc = int(FRONT_sft_calc())
 	lbl_cab_sft_calc.configure(text=cab_sft_calc)
 
+	# ? Cabinet Exposed Side SqFt
 	shutter_expSide_sft_calc = FRONT_sft_calc()
 	profit_calc = FRONT_sft_calc
 
 
 # ********
-# Main Window Creation
+# ! Main Window Creation
 MainWindow = Tk()
 MainWindow.title("Cabinet Material Generator(CMG)")
-MainWindow.geometry("408x725")
+MainWindow.geometry("410x730")
 MainWindow.configure(bg="white")
 MainWindow.resizable(True, True)
 logo_icon = PhotoImage(file="D:\Work\Python\All_Python_Projects_Jay\Personal_Codes\Cabinet_Material_Generator\CI Logo_16.2.21 copy.png")
 MainWindow.iconphoto(True, logo_icon)
 
 # ********
-# Declaring all text_variables for button command calculations
+# ! Declaring all text_variables for button command calculations
 
 sp_18mmBSB = str()
 cp_18mmBSB = IntVar()
@@ -214,7 +223,7 @@ PARTITION_sft_calc = IntVar()
 
 
 # ********
-# Object variable Sft calculation
+# ! Object variable Sft calculation
 def LP_sft_calc():
 	return int(math.ceil((CabDepth.get() * CabHeight.get()) / 92903.04))
 
@@ -257,15 +266,14 @@ def PARTITION_sft_calc():
 
 
 # ********
-# 1st heading and 1st Section Heading
-b_Help = Button(MainWindow, text="Click To Know How To Use This Software", width=400, command=helper)
-# lbl_Title = Label(MainWindow,text="********",width=44,\
-#                font=("comic scan",12,"bold"), height=1)
-lbl_SubTitle_01 = Label(MainWindow, text="SELLING PRICE CALCULATION", width=44, \
-                        font=("comic scan", 12, "bold"), height=2, bg="green", fg="white", anchor="center")
+# ! 1st heading and 1st Section Heading
+b_Help = Button(MainWindow, text="Click To Know How To Use This Software", width=40, justify=LEFT   , command=helper)
+lbl_Title = Label(MainWindow,text="********",width=44,font=("comic scan",12,"bold"), height=1)
+lbl_SubTitle_01 = Label(MainWindow, text="SELLING PRICE CALCULATION", width=44, font=("comic scan", 12, "bold"), height=2, bg="green", fg="white", anchor="center")
+
 
 # ********
-# Column Headings of Sell Price Calculation Section
+# ! Column Headings of Sell Price Calculation Section
 lbl_Particulars = Label(MainWindow, text="Particulars", width=10, height=1, bg="#04CF01", anchor="center",
                         relief="solid")
 lbl_CostPrice = Label(MainWindow, text="Cost Price(₹)", width=10, height=1, bg="#04CF01", anchor="center",
@@ -274,8 +282,9 @@ lbl_Margin = Label(MainWindow, text="Margin(%)", width=10, height=1, bg="#04CF01
 lbl_SellPrice = Label(MainWindow, text="Sell Price(₹)", width=10, height=1, bg="#04CF01", anchor="center",
                       relief="solid")
 
+
 # ********
-# Sell Price Calculation Section Particulars and Entry and Calculated values
+# ! Sell Price Calculation Section Particulars and Entry and Calculated values
 lbl_18mmBSB = Label(MainWindow, text="18mm BSB", width=10, bg="#04CF01", anchor="center", relief="solid")
 e_cp_18mmBSB = Entry(MainWindow, textvariable=cp_18mmBSB, width=10, bg="#CDFECC", relief="solid", justify="center")
 e_margin_18mmBSB = Entry(MainWindow, textvariable=margin_18mmBSB, width=10, bg="#CDFECC", relief="solid",
@@ -315,17 +324,20 @@ e_margin_LaborCharge = Entry(MainWindow, textvariable=margin_LaborCharge, width=
                              justify="center")
 lbl_sp_LaborCharge = Label(MainWindow, textvariable=sp_LaborCharge, width=10, bg="#04CF01", relief="solid")
 
-# ********
-# Sell Price Calculation Button
-b_sp_Calc = Button(MainWindow, text="👉🏻 Calculate Selling Price 👈🏻", bg="green", fg="white", width=305, command=sp_Calc)
 
 # ********
-# Cabinet Dimension Heading
+# ! Sell Price Calculation Button
+b_sp_Calc = Button(MainWindow, text="👉🏻 Calculate Selling Price 👈🏻", bg="green", fg="white", width=305, command=sp_Calc)
+
+
+# ********
+# ! Cabinet Dimension Heading
 lbl_SubTitle_02 = Label(MainWindow, text="CABINET DETAILS", width=44, \
                         font=("comic scan", 12, "bold"), height=2, bg="#D86200", anchor="center")
 
+
 # ********
-# Cabinet Dimensions & Details Entry
+# ! Cabinet Dimensions & Details Entry
 lbl_CabWidth = Label(MainWindow, text="WIDTH(mm)", width=10, height=1, bg="#FF9C4A", anchor="center", relief="solid")
 e_CabWidth = Entry(MainWindow, textvariable=CabWidth, width=10, bg="#FFCA9E", relief="solid", justify="center")
 
@@ -349,13 +361,15 @@ lbl_Exposed_Sides = Label(MainWindow, text="Exposed Sides", width=10, height=1, 
 e_Exposed_Sides = Entry(MainWindow, textvariable=Exposed_Sides, width=10, bg="#FFCA9E", relief="solid",
                         justify="center")
 
+
 # ********
-# Output Calculation Button
+# ! Output Calculation Button
 b_Output_Calc = Button(MainWindow, text="👉🏻 Calculate Output 👈🏻", bg="#CD006A", fg="white", width=305,
                        command=Output_Calc)
 
+
 # ********
-# Output Section
+# ! Output Section
 lbl_Output_Particulars = Label(MainWindow, text="Particulars", width=10, height=1, bg="#CD006A", fg="white",
                                anchor="center", relief="solid")
 lbl_OutPut_SellPrice = Label(MainWindow, text="Sell Price", width=10, height=1, bg="#CD006A", fg="white",
@@ -430,14 +444,19 @@ lbl_shutter_expSide_sft_calc = Label(MainWindow, textvariable=shutter_expSide_sf
 lbl_profit = Label(MainWindow, text="Profit:", width=21, bg="#004357", fg="white", anchor="e", relief="solid")
 lbl_profit_calc = Label(MainWindow, textvariable=profit_calc, width=10, bg="#00C5FF", relief="solid")
 
+
+# ********
+# ! Software Logo And Version
 CI_Logo = PhotoImage(
 	file="D:\Work\Python\All_Python_Projects_Jay\Personal_Codes\Cabinet_Material_Generator\CI Logo_70x70.png")
 lbl_logo = Label(MainWindow, width=70, height=70, image=CI_Logo)
 
 lbl_version = Label(MainWindow, text="CMG v01....jay", width=10, font=("comic scan", 8, "bold"), height=1, fg="black")
 
-# Grid Placement
-b_Help.grid(row=0, column=0, columnspan=45)
+
+# ********
+# ! Grid Placement
+b_Help.grid(row=0, column=0, columnspan=40)
 lbl_SubTitle_01.grid(row=1, column=0, columnspan=45)
 
 lbl_Particulars.grid(row=2, column=0, pady=1)
@@ -547,5 +566,6 @@ lbl_profit_calc.grid(row=27, column=2, pady=1)
 lbl_logo.grid(row=25, column=3, rowspan=3, pady=1)
 
 lbl_version.grid(row=28, column=3, pady=1)
+
 
 MainWindow.mainloop()
